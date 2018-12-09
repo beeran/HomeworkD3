@@ -28,7 +28,7 @@ var chartGroup = svg.append("g")
 var xArray = ["poverty", "age", "income"];
 var yArray = ["obesity", "smokes", "noHealthInsurance"];
 var chosenXAxis = "poverty";
-var chosenYAxis = "noHealthInsurance";
+var chosenYAxis = "obesity";
 // function used for updating x-scale var upon click on axis label
 function xScale(inputData, chosenXAxis) {
   // create scales
@@ -234,7 +234,8 @@ d3.csv("data/data.csv", function (err, inputData) {
   var obesityLabel = chartGroup.append("text")
     .attr("transform", "rotate(-90)")
     .attr("y", 0 - margin.left)
-    .attr("x", -20 - (height / 2))
+    .attr("x", 0 - (height / 2))
+    .classed("active", true)
     .attr("value", "obesity") // value to grab for event listener
     .attr("dy", "1em")
     .classed("axis-text", true)
@@ -243,7 +244,7 @@ d3.csv("data/data.csv", function (err, inputData) {
   var smokesLabel = chartGroup.append("text")
     .attr("transform", "rotate(-90)")
     .attr("y", 20 - margin.left)
-    .attr("x", -20 - (height / 2))
+    .attr("x", -40 - (height / 2))
     .attr("value", "smokes") // value to grab for event listener
     .attr("dy", "1em")
     .classed("axis-text", true)
@@ -308,7 +309,7 @@ d3.csv("data/data.csv", function (err, inputData) {
             .classed("active", false)
             .classed("inactive", true);
         }
-        else {
+        else if (chosenXAxis === "income"){
           incomeLabel
             .classed("active", true)
             .classed("inactive", false);
